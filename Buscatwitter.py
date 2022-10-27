@@ -33,6 +33,40 @@ class Busca:
         tabela_data = tabela.query("assunto==True")[['date', 'content', 'subject']]
         print(tabela_data)
 
+def main():
+    twitter = Busca()
+    print('''Boas vindas ao nosso sistema:
+
+1 - Buscar tweets por data
+2 - Buscar tweets por termo
+3 - Buscar tweets por assunto
+4 - Salvar resultado da busca
+5 - Sair''') 
+    while True:
+       comando = int(input('\n>>> '))
+       if comando == 5:
+        break
+       elif comando == 1:
+        data = str(input('Digite a data no formato dd/mm/aaa:'))
+        twitter.BuscaData(data)
+       elif comando == 2:
+        termo = str(input('Digite o termo que você quer procurar:'))
+        twitter.BuscaTermo(termo)
+       elif comando == 3:
+        print("assuntos disponíveis: 1. Copa do Mundo 2. Eleições 3. Ciência de Dados 4. COVID-19")
+        newcomando = int(input('digite o número correspondente ao assunto que você quer buscar>>> '))
+        if newcomando == 1:
+            twitter.BuscaAssunto('copa do mundo')
+        elif newcomando ==2: 
+            twitter.BuscaAssunto('eleições')
+        elif newcomando ==3: 
+            twitter.BuscaAssunto('ciência de dados')
+        elif newcomando == 4:
+            twitter.BuscaAssunto('covid-19')
+            
+
+       
+
+
 if __name__ == "__main__":
-    twiiter = Busca()
-    twiiter.BuscaAssunto("ciência de dados")
+    main()
