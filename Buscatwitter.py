@@ -21,17 +21,17 @@ class Busca:
     def BuscaData(self, Data:str):
         tabela['data'] = tabela.date.str.contains(Data)
         tabela_data = tabela.query("data==True")[['date', 'content', 'subject']]
-        print(tabela_data)
+        return tabela_data
 
     def BuscaTermo(self, termo:str):
         tabela['termo'] = tabela.content.str.contains(termo)
         tabela_data = tabela.query("termo==True")[['date', 'content', 'subject']]
-        print(tabela_data)
+        return tabela_data
 
     def BuscaAssunto(self, assunto:str):
         tabela['assunto'] = tabela.subject.str.contains(assunto)
         tabela_data = tabela.query("assunto==True")[['date', 'content', 'subject']]
-        print(tabela_data)
+        return tabela_data
 
 def main():
     twitter = Busca()
@@ -48,21 +48,21 @@ def main():
         break
        elif comando == 1:
         data = str(input('Digite a data no formato dd/mm/aaa:'))
-        twitter.BuscaData(data)
+        print(twitter.BuscaData(data))
        elif comando == 2:
         termo = str(input('Digite o termo que você quer procurar:'))
-        twitter.BuscaTermo(termo)
+        print(twitter.BuscaTermo(termo))
        elif comando == 3:
         print("assuntos disponíveis: 1. Copa do Mundo 2. Eleições 3. Ciência de Dados 4. COVID-19")
         newcomando = int(input('digite o número correspondente ao assunto que você quer buscar>>> '))
         if newcomando == 1:
-            twitter.BuscaAssunto('copa do mundo')
+            print(twitter.BuscaAssunto('copa do mundo'))
         elif newcomando ==2: 
-            twitter.BuscaAssunto('eleições')
+            print(twitter.BuscaAssunto('eleições'))
         elif newcomando ==3: 
-            twitter.BuscaAssunto('ciência de dados')
+            print(twitter.BuscaAssunto('ciência de dados'))
         elif newcomando == 4:
-            twitter.BuscaAssunto('covid-19')
+            print(twitter.BuscaAssunto('covid-19'))
             
 
        
